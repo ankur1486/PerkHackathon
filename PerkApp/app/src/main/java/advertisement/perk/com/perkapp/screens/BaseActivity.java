@@ -81,7 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             System.out.println("setActionBar  .                     1 1 1 1 1");
 
             getSupportActionBar().setDisplayShowCustomEnabled(displayShowHomeEnabled);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayUseLogoEnabled(false);
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(false);

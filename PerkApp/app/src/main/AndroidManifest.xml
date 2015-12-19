@@ -15,6 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".screens.fragments.AdsListFragment"
+            android:label="@string/title_activity_landing"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".screens.AdDetailActivity" />
+        <activity
+            android:name=".screens.HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -7,10 +7,17 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/colorAccent"
     tools:context=".screens.SplashActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/welcome_textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:text="Advertisement with Perk "
+        android:textColor="@color/icons"
+        android:textSize="32sp" />
+
 </RelativeLayout>

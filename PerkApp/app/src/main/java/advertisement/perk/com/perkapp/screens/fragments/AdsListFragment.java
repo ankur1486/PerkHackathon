@@ -8,53 +8,46 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import com.parse.ParseObject;
+
+import java.util.List;
 
 import advertisement.perk.com.perkapp.R;
 import advertisement.perk.com.perkapp.adapter.AdsListingAdapter;
 import advertisement.perk.com.perkapp.circlerefresh.CircleRefreshLayout;
-import advertisement.perk.com.perkapp.model.Advertisement;
+import advertisement.perk.com.perkapp.parse.GetAdsApi;
 import advertisement.perk.com.perkapp.screens.BaseV4Fragment;
 
 /**
  * landing screen with listing of ads
  */
-public class AdsListFragment extends BaseV4Fragment {
+public class AdsListFragment extends BaseV4Fragment implements GetAdsApi.Callback {
 
     private CircleRefreshLayout mRefreshLayout;
     private boolean mIsRefreshing = false;
 
+
+    GetAdsApi getAdsApi = new GetAdsApi(this);
+    private RecyclerView mRecyclerView;
+//    GetAdsApi.Callback mAdsListCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_ads_listing, null);
 
+        getAdvertisementList();
+
         initUiComponents(view);
         return view;
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_ads_listing);
-//
-//        setActionBar(R.string.app_name, false, false);
-//
-//        initUiComponents(view);
-//
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-//    }
+    private void getAdvertisementList() {
+        getAdsApi.getAdvertisementList();
+    }
 
     private void initUiComponents(View view) {
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.ads_listing_recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.ads_listing_recycler_view);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerViewDialogFragment newFragment = new DatePickerFragment();
@@ -65,17 +58,14 @@ public class AdsListFragment extends BaseV4Fragment {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        ArrayList<Advertisement> madvertisementArrayList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Advertisement advertisement = new Advertisement();
-            advertisement.setDescription("Ads one :" + i);
-            advertisement.setHeading("");
-
-            madvertisementArrayList.add(advertisement);
-        }
-
-        AdsListingAdapter mAdapter = new AdsListingAdapter(getActivity(), madvertisementArrayList);
-        mRecyclerView.setAdapter(mAdapter);
+//        ArrayList<Advertisement> madvertisementArrayList = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            Advertisement advertisement = new Advertisement();
+//            advertisement.setDescription("Ads one :" + i);
+//            advertisement.setHeading("");
+//
+//            madvertisementArrayList.add(advertisement);
+//        }
 
         mRefreshLayout = (CircleRefreshLayout) view.findViewById(R.id.refresh_layout);
         mRefreshLayout.setOnRefreshListener(new CircleRefreshLayout.OnCircleRefreshListener() {
@@ -97,15 +87,14 @@ public class AdsListFragment extends BaseV4Fragment {
 
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                finish();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public void getAdsSuccess(List<ParseObject> adsList) {
+        AdsListingAdapter mAdapter = new AdsListingAdapter(getActivity(), adsList);
+        mRecyclerView.setAdapter(mAdapter);
+    }
 
+    @Override
+    public void getAdsFailed(String s) {
+
+    }
 }

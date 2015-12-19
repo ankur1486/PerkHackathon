@@ -25,62 +25,49 @@
             android:background="#FFFFFF"
             android:padding="6dp">
 
-            <LinearLayout
-                android:id="@+id/name_status_layout"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/advertisement_imgView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_gravity="left"
-                android:layout_toLeftOf="@+id/amount_layout"
-                android:gravity="left"
-                android:orientation="vertical">
+                android:layout_alignParentTop="true"
+                android:visibility="gone"
+                android:src="@drawable/ic_menu_gallery" />
 
-                <TextView
-                    android:id="@+id/centre_name_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="name"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <TextView
-                    android:id="@+id/centre_address_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:text="Txn ID :"
-                    android:textStyle="italic" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/amount_layout"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="6dp"
-                android:gravity="left|center"
-                android:orientation="vertical">
+                android:layout_below="@+id/advertisement_imgView">
 
-                <TextView
-                    android:id="@+id/balance_textview"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/name_status_layout"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="-100$"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="8dp"
+                    android:gravity="left"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txn_date_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="right"
-                    android:text="25 june 2015"
-                    android:textStyle="italic" />
+                    <TextView
+                        android:id="@+id/ad_Title_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Short Description"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/ad_expires_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="right"
+                        android:text="25 june 2015"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
